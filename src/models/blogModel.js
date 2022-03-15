@@ -8,23 +8,37 @@ const blogModel = new mongoose.Schema({
     },
     body: {
         type: mongoose.Schema.Types.Mixed,
-        require: true
+        required: true
     },
     authorId: {
         type: objId,
         required: true,
         ref: "blogProject_author"
     },
-    tags: { type: [String] },
+    tags: { 
+        type: [String]
+     },
     category: {
         type: [String],
         required: true
     },
-    subcategory: { type: [String] },
-    deletedAt: { type: Date },
-    isDeleted: { type: Boolean, default: false },
-    publishedAt: { type: String },
-    isPublished: { type: Boolean, default: false }
+    subcategory: {
+         type: [String] 
+        },
+    deletedAt: { 
+        type: Date
+     },
+    isDeleted: { 
+        type: Boolean,
+         default: false 
+        },
+    publishedAt: {
+         type: Date
+         },
+    isPublished: { 
+         type: Boolean,
+          default: false
+         }
 }, { timestamps: true });
 
 
