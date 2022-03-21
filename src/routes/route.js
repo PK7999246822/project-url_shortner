@@ -6,11 +6,11 @@ const BlogController= require("../controllers/blogController")
 const {authorisation, authentication}= require("../middleware/mw")
 
 router.post("/authors", AuthorController.createAuthor)
-
-router.post("/blogs",authentication, BlogController.createBlog)
+//Add authentication 
+router.post("/blogs", authentication , BlogController.createBlog)
 
 router.get("/blogs", authentication , BlogController.getAllBlogs)
-
+//Add authentication as well as authorisation
 router.put("/blogs/:blogId", authentication , authorisation ,BlogController.updateBlog)
 
 router.delete("/blogs/:blogId", authentication , authorisation , BlogController.deleted)
