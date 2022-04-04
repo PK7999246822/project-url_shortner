@@ -1,22 +1,15 @@
+//Importing express package
 const express = require('express');
 const router = express.Router();
 
-const AuthorController= require("../controllers/authorController")
-const BlogController= require("../controllers/blogController")
-const {authorisation, authentication}= require("../middleware/mw")
+//Importing the handler functions of urlController
+const { URLshorten , redirection }= require("../controllers/urlController")
 
-router.post("/authors", AuthorController.createAuthor)
-//Add authentication 
-router.post("/blogs", authentication , BlogController.createBlog)
+//First API -: To take longUrl in request body and make shortUrl of it using POST method
+router.post("/url/shorten" , URLshorten)
 
-router.get("/blogs", authentication , BlogController.getAllBlogs)
-//Add authentication as well as authorisation
-router.put("/blogs/:blogId", authentication , authorisation ,BlogController.updateBlog)
+//Second API -: To redirect to originalUrl by taking urlCode in path params by GET method
+router.get("/:urlCode" , redirection)
 
-router.delete("/blogs/:blogId", authentication , authorisation , BlogController.deleted)
-
-router.delete("/blogs",authentication , authorisation , BlogController.Qdeleted)
-
-router.post("/login" , AuthorController.login)
-
+//Exporting route file
 module.exports = router;
